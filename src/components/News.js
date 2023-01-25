@@ -18,19 +18,24 @@ export default class News extends Component {
     };
   }
   async updateNews(){
+    this.props.setProgressBar(10)
     let url =`https://newsapi.org/v2/top-headlines?country=in&category=${this.props.category}&apiKey=e64161be81ff46aaa4921987c601c57a&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    console.log(url)
     let data = await fetch(url);
+    this.props.setProgressBar(30)
       this.setState({
       loading:true
     })
    let parsedData = await data.json();
-        
+   this.props.setProgressBar(50)
       // console.log(parsedData)
       this.setState({
         articles: parsedData.articles,
         totalResults:parsedData.totalResults,
         loading:false
       });
+
+      this.props.setProgressBar(100)
   }
 
 
@@ -117,7 +122,7 @@ export default class News extends Component {
           </div>} 
           
               {/* </InfiniteScroll> */}
-
+{/* 
           <div className="row">
             {this.state.articles.map((element) => {
               return (
@@ -134,7 +139,7 @@ export default class News extends Component {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
 
 
@@ -142,7 +147,7 @@ export default class News extends Component {
 
         {/* //-----------------------------------THIS IS FOR PREVIOUS AND NEXT FUNCTIONALITY ------------------------------- */}
         <div className="container d-flex justify-content-between" style={{marginBottom:"20px"}}>
-          <button disabled={this.state.page==1} className="btn btn-dark btn-sm" type="button" onClick={handlePrevious} >
+          <button disabled={this.state.page===1} className="btn btn-dark btn-sm" type="button" onClick={handlePrevious} >
             &larr;Previous
           </button>
           <button disabled={this.state.page+1 > (Math.ceil(this.state.totalResults/this.props.pageSize))}
