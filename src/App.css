@@ -1,0 +1,6 @@
+#header{
+    text-shadow: 2px 2px 1px grey;
+}
+#header>span{
+    color: blue;
+}

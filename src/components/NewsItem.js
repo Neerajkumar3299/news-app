@@ -1,12 +1,8 @@
-import React, { Component } from "react";
-
-export default class NewsItem extends Component {
-  
-  render() {
-    let {title,description,urlImage,urlNews,author,date}=this.props
+function NewsItem(props){
+    let {title,description,urlImage,urlNews,author,date}=props
     return (
       <>    
-            <div className="card" style={{ width: "18rem" }}>
+            <div className="card" key={urlImage}>
               <img src={(!urlImage)?'https://images.moneycontrol.com/static-mcnews/2020/11/Aviation-770x433.jpg':urlImage} className="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">{title.slice(0,30)}...</h5>
@@ -22,5 +18,5 @@ export default class NewsItem extends Component {
             </>
 
     );
-  }
 }
+export default NewsItem

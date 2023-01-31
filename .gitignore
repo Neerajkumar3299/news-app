@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /favicon_io
+
 # testing
 /coverage
 
@@ -12,6 +13,8 @@
 /build
 
 # misc
+sampleOutput.json
+
 .DS_Store
 .env.local
 .env.development.local
